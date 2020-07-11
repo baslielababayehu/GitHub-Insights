@@ -55,3 +55,8 @@ class Display {
     `;
   }
 }
+
+// Clear profile
+showAlert(message, className) {
+
+}
