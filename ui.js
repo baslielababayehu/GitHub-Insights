@@ -54,9 +54,15 @@ class Display {
   </div>
     `;
   }
+  // Clear profile
+clearProfile() {
+  this.profile.innerHTML = ''; 
+  this.lastFiveRepos.innerHTML = ''; 
 }
 
-// Clear profile
-showAlert(message, className) {
-
 }
+
+
+// showAlert(message, className) {
+
+// }
