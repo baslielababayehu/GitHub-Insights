@@ -17,10 +17,10 @@ class Display {
       </div>
       <div class=" col-auto quick-stats-1">
         <ul class="section-1-features" style="list-style: none;">
-        <li>Name:</i><span class="badge badge-warning style="border-radius: 10px;">${username.name} </span></li>
-          <li>Public Repos:</i><span class="badge badge-warning style="border-radius: 10px;">${username.public_repos} </span></li>
-          <li>Public Gists:</i><span class="badge badge-warning style="border-radius: 10px;">${username.public_gists} </span></li>
-          <li>Followers:</i><span class="badge badge-warning style="border-radius: 10px;">${username.followers} </span></li>
+        <li>Name:</i><span class="badge" style="border-radius: 3px; background-color: #1DB954">${username.name} </span></li>
+          <li>Public Repos:</i><span class="badge" style="border-radius: 3px; background-color: #1DB954">${username.public_repos} </span></li>
+          <li>Public Gists:</i><span class="badge" style="border-radius: 3px; background-color: #1DB954">${username.public_gists} </span></li>
+          <li>Followers:</i><span class="badge" style="border-radius: 3px; background-color: #1DB954">${username.followers} </span></li>
 
 
         </ul>
@@ -30,29 +30,32 @@ class Display {
       </div>
     </div>
   </div>
+  <h4 class="m-2">Latest Repositories</h4>
     
     `;
   }
-  showRepository(username) {
-    this.lastFiveRepos.innerHTML = `
+  showRepository(repos) {
+    let output = ''; 
 
-    <div class="col-12">
-    <div class="row border border-primary m-1 p-1" style="border-radius: 4px; background-color: white;">
-      <div class=" col-auto quick-stats-1">
-        <ul class="section-1-features" style="list-style: none;">
-        <li>Name:</i><span class="badge badge-warning style="border-radius: 10px;">${username.name} </span></li>
-          <li>Public Repos:</i><span class="badge badge-warning style="border-radius: 10px;">${username.public_repos} </span></li>
-          <li>Public Gists:</i><span class="badge badge-warning style="border-radius: 10px;">${username.public_gists} </span></li>
-          <li>Followers:</i><span class="badge badge-warning style="border-radius: 10px;">${username.followers} </span></li>
-
-
-        </ul>
-      </div>
-      <div class="col-5 quick-stats-2"> 
-      </div>
+    repos.forEach(function(repo){
+      output += ` 
+      <div class="col-12">
+      <div class="row border border-primary m-1 p-1" style="border-radius: 4px; background-color: #191414; opacity: 0.75">
+    <div class=" col-auto quick-stats-1">
+    <h5 style="color: white">${repo.name} </h5> <h7 style="color: white">Description: ${repo.description}</h7>
+      <ul class="section-1-features" style="list-style: none; color: white">
+        <li>Stars:</i><span class="badge" style="border-radius: 3px; background-color: #1DB954">${repo.stargazers_count} </span></li>
+        <li>Watchers:</i><span class="badge" style="border-radius: 3px; background-color: #1DB954">${repo.watchers} </span></li>
+        <li>Forks:</i><span class="badge" style="border-radius: 3px; background-color: #1DB954">${repo.forks} </span></li>
+      </ul>
+    </div>
+    <div class="col-5 quick-stats-2"> 
     </div>
   </div>
-    `;
+</div>`
+    })
+
+    this.lastFiveRepos.innerHTML = output;
   }
   // Clear profile
   clearProfile() {
