@@ -1,20 +1,30 @@
-require('dotenv').config();
+// require('dotenv').config();
 // console.log(process.env);
 
 let user = new GitHubUser();
+let display = new Display();
 
 let searchForUser = (e) => {
   console.log(e.target.value);
   let username = e.target.value;
   user.getUser(username).then((data) => {
-    if (data.profileData.message === 'Not Found') {
-      //throw an error message
-      console.log('User not Found!!');
-    } else {
-      //show profile
-      console.log(data.profileData);
+    if (username != ''){
+      if (data.profileData.message === 'Not Found') {
+        //show alert
+        console.log(data.profileData.message); 
+        display.showAlert('User not Found', 'alert alert-danger'); 
+      } else {
+        //show profile
+        display.showprofile(data.profileData);
+        display.showRepository(data.profileData);
+      }
+    }else {
+      display.clearProfile(); 
+      console.log("This Works")
     }
+
   });
+
 };
 
 genericUser = new GitHubUser();
