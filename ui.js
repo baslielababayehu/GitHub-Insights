@@ -55,14 +55,38 @@ class Display {
     `;
   }
   // Clear profile
-clearProfile() {
-  this.profile.innerHTML = ''; 
-  this.lastFiveRepos.innerHTML = ''; 
-}
+  clearProfile() {
+    this.profile.innerHTML = ''; 
+    this.lastFiveRepos.innerHTML = ''; 
+  }
+  showAlert(message, className) {
+    //clear remaing alerts
+    this.clearAlert(); 
+    //create a div 
+    const div = document.createElement('div'); 
+
+    //add the class to the div
+    div.className = className; 
+    //create a text node 
+    div.appendChild(document.createTextNode(`${message}`))
+
+    const searchContainer = document.querySelector('.search-container'); 
+    searchContainer.appendChild(div); 
+
+    //timeout after 3 seconds 
+    setTimeout(() => {
+      this.clearAlert(); 
+    }, 3000)
+    
+  }
+  clearAlert (){
+    //get alert 
+    const alert = document.querySelector('.alert'); 
+    if(alert){
+      alert.remove();
+    }
+  }
 
 }
 
 
-// showAlert(message, className) {
-
-// }
