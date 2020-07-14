@@ -1,5 +1,4 @@
-// require('dotenv').config();
-// console.log(process.env);
+
 
 let user = new GitHubUser();
 let display = new Display();
@@ -16,11 +15,10 @@ let searchForUser = (e) => {
       } else {
         //show profile
         display.showprofile(data.profileData);
-        display.showRepository(data.profileData);
+        display.showRepository(data.repos);
       }
     }else {
       display.clearProfile(); 
-      console.log("This Works")
     }
 
   });
@@ -28,13 +26,9 @@ let searchForUser = (e) => {
 };
 
 genericUser = new GitHubUser();
-//search for a user
-// document.getElementById('search-button').addEventListener('click', (e) => {
-//   e.preventDefault();
-//   console.log(Bas.name);
-// });
+
 document
   .getElementById('profile-search')
   .addEventListener('keyup', searchForUser);
 
-// console.log
+
